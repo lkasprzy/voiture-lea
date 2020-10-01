@@ -176,5 +176,143 @@ require get_template_directory() . '/inc/customizer.php';
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
-}
+};
 
+add_theme_support( 'post-thumbnails' );
+
+add_action('init', 'my_custom_init');
+function my_custom_init()
+{
+/* notre code PHP pour rajouter les custom post type */
+register_post_type(
+'voiture',
+array(
+'label' => 'Voiture',
+'labels' => array(
+'name' => 'Voitures',
+'singular_name' => 'Voiture',
+'all_items' => 'Toutes les voitures',
+'add_new_item' => 'Ajouter une voiture',
+'edit_item' => 'Éditer la voiture',
+'new_item' => 'Nouvelle voiture',
+'view_item' => 'Voir la voiture',
+'search_items' => 'Rechercher parmi les voitures',
+'not_found' => 'Pas de voiture trouvé',
+'not_found_in_trash'=> 'Pas de voiture dans la corbeille'
+),
+'public' => true,
+'capability_type' => 'post',
+'supports' => array(
+'title',
+'editor',
+'thumbnail'
+),
+'has_archive' => true
+)
+);
+register_taxonomy(
+	'dimension',
+	'voiture',
+	array(
+	  'label' => 'Dimensions',
+	  'labels' => array(
+	  'name' => 'Dimensions',
+	  'singular_name' => 'Dimension',
+	  'all_items' => 'Toutes les dimensions',
+	  'edit_item' => 'Éditer la dimension',
+	  'view_item' => 'Voir la dimension',
+	  'update_item' => 'Mettre à jour la dimension',
+	  'add_new_item' => 'Ajouter une dimension',
+	  'new_item_name' => 'Nouvelle dimension',
+	  'search_items' => 'Rechercher parmi les dimensions',
+	  'popular_items' => 'Dimension les plus fréquentes'
+	),
+	'hierarchical' => true
+	)
+  );
+  register_taxonomy(
+	'couleur',
+	'Voiture',
+	array(
+	  'label' => 'Couleurs',
+	  'labels' => array(
+	  'name' => 'Couleurs',
+	  'singular_name' => 'Couleur',
+	  'all_items' => 'Toutes les couleurs',
+	  'edit_item' => 'Éditer la couleur',
+	  'view_item' => 'Voir la couleur',
+	  'update_item' => 'Mettre à jour la couleur',
+	  'add_new_item' => 'Ajouter une couleur',
+	  'new_item_name' => 'Nouvelle couleur',
+	  'search_items' => 'Rechercher parmi les couleurs',
+	  'popular_items' => 'Couleurs les plus utilisées'
+	),
+	'hierarchical' => false
+	)
+  );
+  register_taxonomy(
+	'cylindre',
+	'voiture',
+	array(
+	  'label' => 'Cylindrés',
+	  'labels' => array(
+	  'name' => 'Cylindrés',
+	  'singular_name' => 'Cylindré',
+	  'all_items' => 'Tous les Cylindré',
+	  'edit_item' => 'Éditer le Cylindré',
+	  'view_item' => 'Voir le Cylindré',
+	  'update_item' => 'Mettre à jour le Cylindré',
+	  'add_new_item' => 'Ajouter un Cylindré',
+	  'new_item_name' => 'Nouveau Cylindré',
+	  'search_items' => 'Rechercher parmi les Cylindré',
+	  'popular_items' => 'Cylindré les plus utilisés'
+	),
+	'hierarchical' => true
+	)
+  );
+  register_taxonomy(
+	'anneemodele',
+	'voiture',
+	array(
+	  'label' => 'Année du modèle',
+	  'labels' => array(
+	  'name' => 'Année des modèles',
+	  'singular_name' => 'Année du modèle',
+	  'all_items' => 'Toutes les Année du modèle',
+	  'edit_item' => 'Éditer Année du modèle',
+	  'view_item' => 'Voir la Année du modèle',
+	  'update_item' => 'Mettre à jour Année du modèle',
+	  'add_new_item' => 'Ajouter une Année du modèle',
+	  'new_item_name' => 'Nouvelle Année du modèle',
+	  'search_items' => 'Rechercher parmi les Année du modèle',
+	  'popular_items' => 'Année du modèle les plus utilisées'
+	),
+	'hierarchical' => false
+	)
+  );
+  register_taxonomy(
+	'marque',
+	'voiture',
+	array(
+	  'label' => 'Marque',
+	  'labels' => array(
+	  'name' => 'Marques',
+	  'singular_name' => 'Marque',
+	  'all_items' => 'Toutes les Marques',
+	  'edit_item' => 'Éditer Marque',
+	  'view_item' => 'Voir la Marque',
+	  'update_item' => 'Mettre à jour Marque',
+	  'add_new_item' => 'Ajouter une Marque',
+	  'new_item_name' => 'Nouvelle Marque',
+	  'search_items' => 'Rechercher parmi les Marques',
+	  'popular_items' => 'Marques les plus utilisées'
+	),
+	'hierarchical' => false
+	)
+  );
+  register_taxonomy_for_object_type( 'dimension', 'projet' );
+  register_taxonomy_for_object_type( 'couleur', 'projet' );
+  register_taxonomy_for_object_type( 'cylindre', 'projet' );
+  register_taxonomy_for_object_type( 'anneemodele', 'projet' );
+  register_taxonomy_for_object_type( 'marque', 'projet' );
+}
