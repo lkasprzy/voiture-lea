@@ -232,7 +232,7 @@ register_taxonomy(
   );
   register_taxonomy(
 	'couleur',
-	'Voiture',
+	'voiture',
 	array(
 	  'label' => 'Couleurs',
 	  'labels' => array(

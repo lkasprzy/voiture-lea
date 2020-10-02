@@ -1,4 +1,14 @@
 <?php get_header(); ?>
+<?php 
+$args = array(
+    'post_type' => 'post',
+    'category' => 'cylindre',
+    'meta_key' => 'cylindre', // nom du champ personnalisé
+    'meta_value_num' => 500, // ou meta_value pour tester un texte
+    'meta_compare' => '>' // < > != >= <=
+);
+$query = new WP_Query( $args );
+?>
 <div class="projets">
 <?php if (have_posts()) : ?>
 <?php while (have_posts()) : the_post(); ?>
